@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/signup.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<script type="text/javascript" src = "jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="sweetalert.css">
+	<script type="text/javascript" src = "sweetalert.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(document).ready( function() {
+		$('.next').click( function() {
+			$('.pg1').fadeOut();
+			$('.pg2').delay(700).fadeIn();
+		});
+		$('.next2').click( function() {
+			$('.pg2').fadeOut();
+			$('.pg3').delay(700).fadeIn();
+		});
+
+
+		$('.button').click( function() {
+			var fname = $('#fname').val();
+			var lname = $('#lname').val();
+			var email = $('#email').val();
+			var password = $('#pass').val();
+			var acc = $('#acc').val();
+			var city = $('#city').val();
+			var state = $('#state').val();
+			var country = $('#country').val();
+			var blood = $('#blood').val();
+			var age = $('#age').val();
+			var gender = $('#gender').val();
+			var problem = $('#problem').val();
+
+			var data = "fname="+fname+"&lname="+lname+"&email="+email+"&password="+password+"&acc="+acc+"&city="+city+"&state="+state+"&country="+country+"&blood="+blood+"&age="+age+"&gender="+gender+"&problem"+problem;
+
+			$.post('backend/register.php',data,function(r) {
+				if (r == 'success') {
+				    swal({
+                        title:"Success",
+                        text:"Thank you for Signing up on NextEv.",
+                        type:"success"
+                    }, function(){
+                        window.location.href="login.html";
+                    });
+				} else {
+					swal("Error",r,"error");
+					$('#email').val("");
+				}
+			});
+		});
+	});
+</script>
+<body>
+	<div class = "main">
+	<div class = "header">
+		<div class="logo"><span style = "font-weight: 400;">EXUN</span>CLAN</div>
+		<div class="nav">
+			<div class = "nav-opt"><a href="index.html">Get Started</a></div>
+			<div class = "nav-opt"><a href = "login.html">Sign In</a></div>
+			<div class = "nav-opt"><a href="signup.html">Sign Up</a></div>
+		</div>
+
+	</div>
+	<div class = "text-pos">
+		<div class = "heading">Everything secure. <br>
+Everything passwordless.</div>
+		<div class = "text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas justo elit, rhoncus sed nulla quis, ornare lacinia.</div>
+		<div class = "signup">
+		<div class = "signup-top">
+		<div class = "text-pos">
+			<div class = "title">Sign up now</div>
+			<div class = "sub-text">Fill in the form below to get instant access</div>
+		</div>
+		</div>
+		<div class = "pg1">
+			<input style = "margin-top: 25px;"id = "fname" placeholder = "Hospital Name"autocomplete = "off"><br><br>
+			<input id = "lname" placeholder = "Contact Number"autocomplete = off ><br><br>
+			<input autocomplete = "off" type = "email" id = "email" placeholder = "Email"><br><br>
+			<input autocomplete = "off" id = "pass" placeholder = "Password" type = "password">
+			<button class = "next">Continue</button>
+			</div>
+				<div class = "pg2">
+			<input style = "margin-top: 25px;"id = "acc" placeholder="Database URL (Google Sheets)">
+			<br><br>
+			<input autocomplete = "off" id = "city" placeholder = "City"><br><br>
+			<input autocomplete = "off" id = "state" id = "email" placeholder = "State"><br><br>
+			<input autocomplete = "off" id = "country" placeholder = "Country">
+			<button class = "button">Sign Up</button>
+			</div>
+			
+			</div>
+		</div>
+		
+		</div>
+	</div>
+
+</body>
+</html>

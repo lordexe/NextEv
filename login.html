@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<script type="text/javascript" src = "jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="sweetalert.css">
+	<script type="text/javascript" src = "sweetalert.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(document).ready( function() {
+		$('button').click( function() {
+			var email = $('#email').val();
+			var password = $('#pass').val();
+
+			var data = "email="+email+"&password="+password;
+
+			$.post('Backend/login.php',data,function(r) {
+				if (r == 'Success') {
+					swal({
+                        title:"You have been Signed In!",
+                        text:"Click ok to continue",
+                        type:"success"
+                    }, function(){
+                        window.location.href="dash.php";
+                    });
+				} else {
+					swal("Error",r,"error");
+				}
+			});
+		});
+	});
+</script>
+<body>
+	<div class = "main">
+	<div class = "header">
+		<div class="logo"><span style = "font-weight: 400;">EXUN</span>CLAN</div>
+		<div class="nav">
+			<div class = "nav-opt"><a href="index.html">Get Started</a></div>
+			<div class = "nav-opt"><a href = "login.html">Sign In</a></div>
+			<div class = "nav-opt"><a href="signup.html">Sign Up</a></div>
+		</div>
+
+	</div>
+	<div class = "text-pos">
+		<div class = "heading">Welcome To NextEv.<br>Login to our site
+</div>
+		<div class = "text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas justo elit, rhoncus sed nulla quis, ornare lacinia.</div>
+		<div class = "login">
+		<div class = "login-top">
+		<div class = "text-pos">
+			<div class = "title">Login now</div>
+			<div class = "sub-text">Enter your email and password to login</div>
+		</div>
+		</div>
+		
+			<input style = "margin-top: 25px;"id = "email" placeholder = "Hospital Name / Email"autocomplete = off><br><br>
+			<input type = "password" id = "pass" placeholder = "Password" autocomplete = off><br><br>
+			
+			<button class = "button">Login</button>
+			</div>
+				
+			</div>
+		</div>
+		
+		</div>
+	</div>
+
+</body>
+</html>
